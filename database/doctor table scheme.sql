@@ -1,0 +1,7 @@
+CREATE TABLE doctors(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    major ENUM('SURGEON', 'GENERAL') NOT NULL,
+    gender ENUM('FEMALE','MALE') NOT NULL
+);
