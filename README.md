@@ -52,5 +52,7 @@ Purpose:
   I will then finally implement Spring frameowrk as a final version of the project.
   All this process is to build my strong base to be able to learn any tech stack that could be challenging in the future
   Thanks !
-
+IMPORTANT NOTE: 
+ 1- The project did not recive its full time due to the stress of univeristy exams.
+ 2- Sadly i wanted to refactor everything in the intial versoin but i thought it'd be a good idea to see how it improves (:
 enjoy :D
