@@ -4,5 +4,5 @@ CREATE TABLE IF NOT EXISTS patients(
     gender ENUM('FEMALE','MALE') NOT NULL,
     birth_date DATE NOT NULL,
     middle_name VARCHAR(255),
-    last_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL
 );
