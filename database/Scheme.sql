@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS patients(
     gender ENUM('FEMALE','MALE') NOT NULL,
     birth_date DATE NOT NULL,
     middle_name VARCHAR(255),
-    last_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL
 );
 CREATE TABLE IF NOT EXISTS doctors(
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -22,5 +22,5 @@ CREATE TABLE IF NOT EXISTS appointments(
     patient_id INT NOT NULL,
     doctor_id INT NOT NULL,
     FOREIGN KEY (patient_id) REFERENCES patients(id) ON DELETE CASCADE,
-    FOREIGN KEY (doctor_id) REFERENCES doctors(id) ON DELETE CASCADE,
+    FOREIGN KEY (doctor_id) REFERENCES doctors(id) ON DELETE CASCADE
 );
