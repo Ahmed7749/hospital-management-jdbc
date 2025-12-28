@@ -5,7 +5,6 @@ import com.hospital.utils.ReadingInputs;
 import java.util.Scanner;
 
 public class HospitalController {
-    private final Scanner scanner = new Scanner(System.in);
     private final PatientController patientController;
     private final DoctorController doctorController;
     private final AppointmentController appointmentController;
@@ -15,7 +14,7 @@ public class HospitalController {
         this.appointmentController = appointmentController;
     }
 
-    public void startHospitalSession(){
+    public void startHospitalSession(Scanner scanner){
         boolean flag = true;
         int choice;
         while(flag){

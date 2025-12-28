@@ -7,13 +7,12 @@ import com.hospital.view.AppointmentView;
 import java.util.Scanner;
 
 public class AppointmentController {
-    private HospitalManagement hospitalManagement;
-    private Scanner scanner = new Scanner(System.in);
+    private final HospitalManagement hospitalManagement;
     public AppointmentController(HospitalManagement hospitalManagement){
         this.hospitalManagement = hospitalManagement;
     }
 
-    public void startAppointmentSession(){
+    public void startAppointmentSession(Scanner scanner){
         boolean flag = true;
         int choice;
         while(flag){

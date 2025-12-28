@@ -8,15 +8,13 @@ import com.hospital.view.PatientView;
 import java.util.Scanner;
 
 public class PatientController {
-    private HospitalManagement hospitalManagement;
-    private Scanner scanner = new Scanner(System.in);
-
+    private final HospitalManagement hospitalManagement;
     public PatientController(HospitalManagement hospitalManagement) {
         this.hospitalManagement = hospitalManagement;
 
     }
 
-    public void startPatientSession(){
+    public void startPatientSession(Scanner scanner){
         boolean flag = true;
         int choice;
         while(flag){
