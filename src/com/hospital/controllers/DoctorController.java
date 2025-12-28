@@ -41,8 +41,13 @@ public class DoctorController {
                     hospitalManagement.deleteDoctorById(id);
                 }
                 case 5 -> {
-                    System.out.println("Doctor session closed");
                     System.out.println();
+                    String major = ReadingInputs.readString(scanner, "Enter the doctor major: (surgeon, general)");
+                    DoctorView.printDoctors(hospitalManagement.getDoctorsByMajor(major));
+                }
+
+                case 6 -> {
+                    System.out.println("Doctor session closed");
                     flag = false;
                 }
                 default -> System.out.println("Wrong choice input");
