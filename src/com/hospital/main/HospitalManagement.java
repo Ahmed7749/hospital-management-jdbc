@@ -31,32 +31,17 @@ public class HospitalManagement {
 
 
 
-    public void updatePatientName(int patientId, String newName){
+    public boolean updatePatientName(int patientId, String newName){
         Optional<Patient> foundPatient = patientDAO.getPatientById(patientId);
-        if(foundPatient.isPresent()){
-            boolean updated = patientDAO.updatePatientName(foundPatient.get(), newName);
-            if(updated){
-                System.out.println("Patient has been updated");
-            } else{
-                System.out.println("Error in db");
-            }
-            return;
-        }
-        System.out.println("Patient does not exist");
+        return foundPatient.filter(patient -> patientDAO.updatePatientName(patient, newName)).isPresent();
     }
 
-    public void deletePatientById(int id){
+    public boolean deletePatientById(int id){
         Optional<Patient> foundPatient = patientDAO.getPatientById(id);
         if(foundPatient.isPresent()){
-            boolean deletedPatient = patientDAO.deletePatientById(foundPatient.get());
-            if(deletedPatient) {
-                System.out.println("patient deleted");
-            } else{
-                System.out.println("Error in db");
-            }
-            return;
+            return deletePatientById(id);
         }
-        System.out.println("patient not found");
+        return false;
     }
 
 
@@ -103,13 +88,11 @@ public class HospitalManagement {
     }
 
 
-    public void bookAppointment(Appointment appointment){
-        if (!appointmentDAO.isBooked(appointment.getAppointmentTime(), appointment.getAppointmentDate(), appointment.getPatient_id(), appointment.getDoctor_id())) {
-               boolean newAppointment = appointmentDAO.bookAppointment(appointment);
-               System.out.println((newAppointment) ? "Appointment added to db" : "Error in db");
-               return;
+    public boolean bookAppointment(Appointment appointment){
+        if (appointmentDAO.isBooked(appointment.getAppointmentTime(), appointment.getAppointmentDate(), appointment.getPatient_id(), appointment.getDoctor_id())) {
+            return false;
         }
-        System.out.println("Appointment already exists");
+        return appointmentDAO.bookAppointment(appointment);
     }
 
     public void updateAppointmentTime(int appointmentId, LocalTime newTime){

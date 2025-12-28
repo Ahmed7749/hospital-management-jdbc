@@ -24,18 +24,15 @@ public class PatientController {
             switch(choice){
                 case 1 -> {
                     boolean added = hospitalManagement.admitPatient(ReadingInputs.readPatient(scanner));
-                    if(added){
-                        System.out.println("patient added to db");
-                    } else{
-                        System.out.println("Patient already exist");
-                    }
+                    System.out.println((added) ? "Patient added" : "Patient already exists");
                 }
                 case 2 ->{
                         System.out.println();
                         int id = ReadingInputs.readInt(scanner, "Enter the patient id: ");
                         scanner.nextLine();
                         String newName = ReadingInputs.readString(scanner, "Enter the new name: ");
-                        hospitalManagement.updatePatientName(id,newName);
+                        boolean updated = hospitalManagement.updatePatientName(id,newName);
+                        System.out.printf((updated) ? "Patient updated" : "Failed to update");
                 }
                 case 3 -> {
                     System.out.println();
@@ -44,7 +41,8 @@ public class PatientController {
                 case 4 -> {
                         System.out.println();
                         int patientId = ReadingInputs.readInt(scanner, "Enter patient id: ");
-                        hospitalManagement.deletePatientById(patientId);
+                        boolean deleted = hospitalManagement.deletePatientById(patientId);
+                        System.out.println((deleted) ? "Patient deleted success" : "operation failed");
                 }
                 case 5 -> {
                     System.out.println();
