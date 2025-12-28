@@ -11,7 +11,8 @@ public class DoctorView {
                 2.\t update doctor name
                 3.\t view doctors
                 4.\t delete doctor(by id)
-                5.\t back to main menu
+                5.\t print doctors per major
+                6.\t back to main menu
                 """);
     }
 
