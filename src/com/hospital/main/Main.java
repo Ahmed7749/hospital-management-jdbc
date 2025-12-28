@@ -12,9 +12,11 @@ import com.hospital.utils.DatabaseConnector;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         DatabaseConnector.getDatabaseConnection();
         PatientDAO patientDAO = new PatientDAO();
         DoctorDAO doctorDAO = new DoctorDAO();
@@ -24,6 +26,6 @@ public class Main {
         DoctorController doctorController = new DoctorController(hospitalManagement);
         AppointmentController appointmentController = new AppointmentController(hospitalManagement);
         HospitalController HMS = new HospitalController(patientController, doctorController, appointmentController);
-        HMS.startHospitalSession();
+        HMS.startHospitalSession(scanner);
     }
 }
