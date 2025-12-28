@@ -42,6 +42,11 @@ public class DoctorDAO extends GenericDAO{
     }
 
 
+    public List<Doctor> getDoctorsByMajor(String major){
+        String sql = "SELECT * FROM doctors WHERE major = ?";
+        return executeQueryList(sql, DoctorSupplier::getDoctorViaResultSet, major);
+    }
+
     public List<Doctor> getListOfDoctors(){
         String sql = "SELECT * FROM doctors";
         return executeQueryList(sql, DoctorSupplier::getDoctorViaResultSet);
