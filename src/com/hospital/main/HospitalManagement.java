@@ -58,28 +58,17 @@ public class HospitalManagement {
     }
 
 
-    public void updateDoctorName(int doctorId, String newName){
+    public boolean updateDoctorName(int doctorId, String newName){
         Optional<Doctor> foundDoctor = doctorDAO.getDoctorById(doctorId);
-        if(foundDoctor.isPresent()){
-            boolean updatedName = doctorDAO.updateDoctorName(foundDoctor.get(), newName);
-            if(updatedName){
-                System.out.println("Doctor name has been updated");
-                return;
-            } else
-                System.out.println("Error in db");
-            return;
-        }
-        System.out.println("Error in db");
+        return foundDoctor.filter(doctor -> doctorDAO.updateDoctorName(doctor, newName)).isPresent();
     }
 
-    public void deleteDoctorById(int id){
+    public boolean deleteDoctorById(int id){
         Optional<Doctor> doctor = doctorDAO.getDoctorById(id);
         if(doctor.isPresent()){
-            boolean deleted = doctorDAO.deleteDoctorById(id);
-            System.out.println((deleted) ? "Doctor deleted success" : "Doctor failed to delete");
-            return;
+            return doctorDAO.deleteDoctorById(id);
         }
-        System.out.println("Error in db");
+        return false;
     }
 
 

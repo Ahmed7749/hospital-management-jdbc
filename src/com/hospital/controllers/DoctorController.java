@@ -23,18 +23,15 @@ public class DoctorController {
                 case 1 -> {
                     System.out.println();
                     boolean added = hospitalManagement.addDoctor(ReadingInputs.readDoctor(scanner));
-                    if(added){
-                        System.out.println("Doctor added to db");
-                    } else{
-                        System.out.println("Doctor already exists");
-                    }
+                    System.out.println((added) ? "Added successfully" : "Doctor already exists");
                 }
                 case 2 -> {
                     System.out.println();
                     int doctorId = ReadingInputs.readInt(scanner, "Enter doctor id: ");
                     scanner.nextLine();
                     String doctorName = ReadingInputs.readString(scanner,"Enter new name: ");
-                    hospitalManagement.updateDoctorName(doctorId,doctorName);
+                    boolean updated = hospitalManagement.updateDoctorName(doctorId,doctorName);
+                    System.out.println((updated) ? "Doctor name updated" : "Error could not update name");
                 }
                 case 3 -> {
                     System.out.println();
@@ -43,7 +40,8 @@ public class DoctorController {
                 case 4 -> {
                     System.out.println();
                     int id = ReadingInputs.readInt(scanner, "Enter doctor id: ");
-                    hospitalManagement.deleteDoctorById(id);
+                    boolean deleted = hospitalManagement.deleteDoctorById(id);
+                    System.out.println((deleted) ? "Doctor deleted successfully" : "Failed to delete");
                 }
                 case 5 -> {
                     System.out.println();
