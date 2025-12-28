@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class GenericDAO<T>{
+public abstract class GenericDAO{
     protected boolean executeUpdate(String sql, Object... parameters){
         Connection con = null;
         try{
@@ -31,7 +31,7 @@ public abstract class GenericDAO<T>{
     }
 
 
-    protected Optional<T> executeQuerySingle(String sql, RowMapper<T> mapper, Object... parameters){
+    protected <T> Optional<T> executeQuerySingle(String sql, RowMapper<T> mapper, Object... parameters){
         Connection con = null;
         try{
             con = DatabaseConnector.getDatabaseConnection();
