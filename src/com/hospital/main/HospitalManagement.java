@@ -38,10 +38,7 @@ public class HospitalManagement {
 
     public boolean deletePatientById(int id){
         Optional<Patient> foundPatient = patientDAO.getPatientById(id);
-        if(foundPatient.isPresent()){
-            return deletePatientById(id);
-        }
-        return false;
+        return foundPatient.filter(patientDAO::deletePatientById).isPresent();
     }
 
 
