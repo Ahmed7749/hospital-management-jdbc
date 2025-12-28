@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class PatientDAO extends GenericDAO{
-    public void addPatientToDB(Patient patient){
+    public boolean addPatientToDB(Patient patient){
         String sql = "INSERT INTO patients(name,gender,birth_date,middle_name,last_name) VALUES(?,?,?,?,?)";
-        executeUpdate(sql,
+        return executeUpdate(sql,
                 patient.getName(),
                 patient.getGender().toString(),
                 Date.valueOf(patient.getBirthDate()),

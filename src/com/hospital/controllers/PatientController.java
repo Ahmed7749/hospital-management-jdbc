@@ -22,7 +22,14 @@ public class PatientController {
             System.out.println();
             choice = ReadingInputs.readInt(scanner,"Enter your choice: ");
             switch(choice){
-                case 1 -> hospitalManagement.admitPatient(ReadingInputs.readPatient(scanner));
+                case 1 -> {
+                    boolean added = hospitalManagement.admitPatient(ReadingInputs.readPatient(scanner));
+                    if(added){
+                        System.out.println("patient added to db");
+                    } else{
+                        System.out.println("Patient already exist");
+                    }
+                }
                 case 2 ->{
                         System.out.println();
                         int id = ReadingInputs.readInt(scanner, "Enter the patient id: ");

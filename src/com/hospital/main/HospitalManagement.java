@@ -21,13 +21,12 @@ public class HospitalManagement {
         this.appointmentDAO = appointmentDAO;
     }
 
-    public void admitPatient(Patient patient){
+    public boolean admitPatient(Patient patient){
         Optional<Patient> patientOptional = patientDAO.findPatientByName(patient.getName());
         if(patientOptional.isPresent()){
-            System.out.println("user already in db");
-            return;
+            return false;
         }
-        patientDAO.addPatientToDB(patient);
+        return patientDAO.addPatientToDB(patient);
     }
 
 
@@ -65,18 +64,12 @@ public class HospitalManagement {
         return patientDAO.getPatientsList();
     }
 
-    public void addDoctor(Doctor doctor){
+    public boolean addDoctor(Doctor doctor){
         Optional<Doctor> foundDoctor = doctorDAO.getDoctorByName(doctor.getName());
-        if(foundDoctor.isEmpty()){
-            boolean added = doctorDAO.addDoctorToDB(doctor);
-            if(added){
-                System.out.println("Doctor has been added to db");
-                return;
-            } else
-                System.out.println("Error in db");
-            return;
+        if(foundDoctor.isPresent()){
+            return false;
         }
-        System.out.println("Doctor already in db !");
+        return doctorDAO.addDoctorToDB(doctor);
     }
 
 

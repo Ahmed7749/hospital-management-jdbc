@@ -1,5 +1,4 @@
 package com.hospital.daos;
-
 import com.hospital.pojos.Appointment;
 import com.hospital.utils.AppointmentSupplier;
 import java.sql.*;

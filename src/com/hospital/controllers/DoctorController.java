@@ -22,7 +22,12 @@ public class DoctorController {
             switch(choice){
                 case 1 -> {
                     System.out.println();
-                    hospitalManagement.addDoctor(ReadingInputs.readDoctor(scanner));
+                    boolean added = hospitalManagement.addDoctor(ReadingInputs.readDoctor(scanner));
+                    if(added){
+                        System.out.println("Doctor added to db");
+                    } else{
+                        System.out.println("Doctor already exists");
+                    }
                 }
                 case 2 -> {
                     System.out.println();
