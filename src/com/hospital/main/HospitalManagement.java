@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class HospitalManagement {
-    private PatientDAO patientDAO;
-    private DoctorDAO doctorDAO;
-    private AppointmentDAO appointmentDAO;
+    private final PatientDAO patientDAO;
+    private final DoctorDAO doctorDAO;
+    private final AppointmentDAO appointmentDAO;
     public HospitalManagement(PatientDAO patientDAO, DoctorDAO doctorDAO, AppointmentDAO appointmentDAO) {
         this.patientDAO = patientDAO;
         this.doctorDAO = doctorDAO;
@@ -162,5 +162,10 @@ public class HospitalManagement {
 
     public List<Appointment> getAppointmentsForPatient(int patient_id){
         return appointmentDAO.getAppointmentsByPatientId(patient_id);
+    }
+
+
+    public List<Doctor> getDoctorsByMajor(String major){
+        return doctorDAO.getDoctorsByMajor(major);
     }
 }
