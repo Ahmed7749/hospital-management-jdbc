@@ -84,41 +84,32 @@ public class HospitalManagement {
         return appointmentDAO.bookAppointment(appointment);
     }
 
-    public void updateAppointmentTime(int appointmentId, LocalTime newTime){
+    public boolean updateAppointmentTime(int appointmentId, LocalTime newTime){
         Optional<Appointment> appointment = appointmentDAO.getAppointmentById(appointmentId);
         if(appointment.isPresent()) {
             if (appointmentDAO.isBooked(appointment.get().getAppointmentTime(), appointment.get().getAppointmentDate(), appointment.get().getPatient_id(), appointment.get().getDoctor_id())) {
-                boolean updated = appointmentDAO.updateAppointmentTime(appointment.get(), newTime);
-                System.out.println((updated) ? "Appointment time updated success" : "Error in db");
-                return;
+                return appointmentDAO.updateAppointmentTime(appointment.get(), newTime);
             }
-            System.out.println("Error in db");
+            return false;
         }
-        System.out.println("Appointment with this id is not booked");
+        return false;
     }
 
-    public void updateAppointmentDate(int appointmentId, LocalDate newDate){
+    public boolean updateAppointmentDate(int appointmentId, LocalDate newDate){
         Optional<Appointment> appointment = appointmentDAO.getAppointmentById(appointmentId);
         if(appointment.isPresent()) {
             if (appointmentDAO.isBooked(appointment.get().getAppointmentTime(), appointment.get().getAppointmentDate(), appointment.get().getPatient_id(), appointment.get().getDoctor_id())) {
-                boolean updated = appointmentDAO.updateAppointmentDate(appointment.get(), newDate);
-                System.out.println((updated) ? "Appointment time updated success" : "Error in db");
-                return;
+                return appointmentDAO.updateAppointmentDate(appointment.get(), newDate);
             }
-            System.out.println("Error in db");
+            return false;
         }
-        System.out.println("Appointment with this time is not booked");
+        return false;
     }
 
 
-    public void deleteAppointmentById(int appointmentId){
+    public boolean deleteAppointmentById(int appointmentId){
         Optional<Appointment> foundAppointment = appointmentDAO.getAppointmentById(appointmentId);
-        if(foundAppointment.isPresent()){
-            boolean deleted = appointmentDAO.deleteAppointment(foundAppointment.get());
-            System.out.println((deleted) ? "Appointment has been deleted" : "Error in db");
-            return;
-        }
-        System.out.println("Appointment with this id is not found");
+        return foundAppointment.filter(appointmentDAO::deleteAppointment).isPresent();
     }
 
     public List<Appointment> getAppointmentList(){
