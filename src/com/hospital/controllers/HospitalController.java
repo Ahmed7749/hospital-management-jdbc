@@ -24,15 +24,15 @@ public class HospitalController {
             switch(choice){
                 case 1-> {
                     System.out.println();
-                    patientController.startPatientSession();
+                    patientController.startPatientSession(scanner);
                 }
                 case 2-> {
                     System.out.println();
-                    doctorController.startDoctorSession();
+                    doctorController.startDoctorSession(scanner);
                 }
                 case 3-> {
                     System.out.println();
-                    appointmentController.startAppointmentSession();
+                    appointmentController.startAppointmentSession(scanner);
                 }
                 case 4-> flag = false;
                 default -> System.out.println("Wrong choice");

@@ -20,7 +20,7 @@ public class AppointmentController {
             choice = ReadingInputs.readInt(scanner, "Enter your choice: ");
             switch(choice){
                 case 1 -> hospitalManagement.bookAppointment(ReadingInputs.readAppointment(scanner));
-                case 2 -> startUpdateSubSession();
+                case 2 -> startUpdateSubSession(scanner);
                 case 3 -> AppointmentView.printAppointments(hospitalManagement.getAppointmentList());
                 case 4 -> AppointmentView.printAppointments(hospitalManagement.getAppointmentsForPatient(ReadingInputs.readInt(scanner, "Enter patient's id")));
                 case 5 -> hospitalManagement.deleteAppointmentById(ReadingInputs.readInt(scanner,"Enter appointment id"));
@@ -33,7 +33,7 @@ public class AppointmentController {
     }
 
 
-    public void startUpdateSubSession(){
+    public void startUpdateSubSession(Scanner scanner){
         boolean flag = true;
         int choice;
         while(flag){
